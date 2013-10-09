@@ -4,11 +4,12 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 import com.carlosbecker.zip.util.PathChecker
-import com.carlosbecker.zip.util.ZipFS
+import com.carlosbecker.zip.util.ZipFSARM
 import com.carlosbecker.zip.visitor.Compressor
 import com.carlosbecker.zip.visitor.Extractor
 
-object NioZip extends AbstractNioZip with ZipFS with PathChecker {
+/** Factory for com.carlosbecker.zip.AbstractNioZip instances. */
+object NioZip extends AbstractNioZip with ZipFSARM with PathChecker {
   override def zip(source: Path, target: Path) = {
     checkPathExists(source)
     withZipFS(target, true) { fs =>
